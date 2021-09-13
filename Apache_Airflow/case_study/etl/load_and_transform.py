@@ -34,6 +34,7 @@ dag=DAG(
     dag_id='weatherDag',
     default_args=default_args,
     start_date=days_ago(2),
+    schedule_interval="* */2 * * *"
 )
 
 ## First task it to query get the weather from openweathermap
