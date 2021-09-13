@@ -1,3 +1,4 @@
+# Getting started with Airflow
 ## What is Apache Airflow
 ![img.png](resources/airflow.png)
 
@@ -36,4 +37,9 @@ airflow scheduler
 ## DAGS
 DAG(Directed Acyclic Graph) is the core concept of Airflow ,involves collection of Tasks together with dependencies and relationships to say how they should run
 
+Here is a basic example DAG
+
 ![img.png](resources/DAG.png)
+
+It defines four Tasks -A,B,C and D and dictates the order in which they have to run,and what tasks depend on what others.
+it also shows how often the DAG is run(maybe every 5 minutes starting tomorow,or every day since January 1st,2020)
