@@ -4,11 +4,12 @@ from datetime import timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
+import json
 
 
-## Defining DAG Arguments
+### define dag arguments
 default_args = {
-    'owner': 'lakshay',
+    'owner': 'waina',
     'depends_on_past': False,
     'start_date': days_ago(2),
     'email': ['airflow@example.com'],
@@ -31,26 +32,42 @@ default_args = {
     # 'trigger_rule': 'all_success'
 }
 
-# define the python function
-def my_function(x):
-    return x + " is a must have tool for Data Engineers."
+def extract():
+    data_string = '{"1001": 301.27, "1002": 433.21, "1003": 502.22}'
+    return json.loads(data_string)
 
-# define the DAG
+def transform(order_data):
+    print(type(order_data))
+    for value in order_data.values():
+        total_order_value = value
+    return {"total_order_value": "total_order_value"}
+
+
+
+
+## define dag
 dag = DAG(
-    'python_operator_sample',
+    dag_id="etldag",
+    start_date=days_ago(2),
     default_args=default_args,
-    description='How to use the Python Operator?',
-    schedule_interval=timedelta(days=1) #"""The schedule_interval argument takes
-    #a) any value that is a valid Crontab schedule value, so you could also do:
-     # i.e schedule_interval="0 * * * *"
-    # b) it can use timedelta function i.e timedelta(days=1)""",
+    schedule_interval="* 2 * * *",
 )
-# define the first task
-t1 = PythonOperator(
-    task_id='print',
-    python_callable= my_function,
-    op_kwargs = {"x" : "Apache Airflow"},
+
+# define second task
+
+extract_task = PythonOperator(
+    task_id="extract",
+    python_callable=extract,
+    op_kwargs={"x":"Apache Airflow"},
+    dag=dag,
+)
+## define first task
+
+transform_task = PythonOperator(
+    task_id="transform",
+    op_kwargs={"order_data": "{{ti.xcom_pull('extract')}}"},
+    python_callable=transform,
     dag=dag,
 )
 
-t1
+extract_task >> transform_task

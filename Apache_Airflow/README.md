@@ -43,3 +43,6 @@ Here is a basic example DAG
 
 It defines four Tasks -A,B,C and D and dictates the order in which they have to run,and what tasks depend on what others.
 it also shows how often the DAG is run(maybe every 5 minutes starting tomorow,or every day since January 1st,2020)
+
+A DAG usually has a schedule,a start time and a unique ID.The tasks inside DAG's are made of operators.Operators are define what
+actually run for a particular task.
