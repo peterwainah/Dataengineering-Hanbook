@@ -40,8 +40,10 @@ dag = DAG(
     'python_operator_sample',
     default_args=default_args,
     description='How to use the Python Operator?',
-    schedule_interval=timedelta(days=1) #"""The schedule_interval argument takes any value that is a valid Crontab schedule value, so you could also do:
-     # i.e schedule_interval="0 * * * *"  """,
+    schedule_interval=timedelta(days=1) #"""The schedule_interval argument takes
+    #a) any value that is a valid Crontab schedule value, so you could also do:
+     # i.e schedule_interval="0 * * * *"
+    # b) it can use timedelta function i.e timedelta(days=1)""",
 )
 # define the first task
 t1 = PythonOperator(
