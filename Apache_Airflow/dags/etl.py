@@ -51,6 +51,7 @@ dag = DAG(
     schedule_interval=None,
     start_date=days_ago(2),
     default_args=default_args,
+    schedule_interval="* 2 * * *",
 )
 
 # define second task
