@@ -8,11 +8,11 @@ from datetime import datetime
 def fetch_weather_info():
     """This function will fetch openweathermap.com'S api AND  GET WEATHER FOR bROOKLYN,Ny AND then dump the json to the src/data directory
     with the file name "todays date".json" """
-    API_KEY='e4e9cd51a9ecd44bb1929b8c4784df55'
+    API_KEY='key'
     print(API_KEY)
     parameters={'q': 'Brooklyn, USA','appid':API_KEY}
     print(parameters)
-    result = requests.get("http://api.openweathermap.org/data/2.5/weather?q=London&appid=e4e9cd51a9ecd44bb1929b8c4784df55",)
+    result = requests.get("http://api.openweathermap.org/data/2.5/weather?q=London&appid=id",)
     print("result is ",result)
 
     # if the API call was successful ,get the json and dump it to a file with todays date as title.
