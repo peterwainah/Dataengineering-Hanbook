@@ -48,7 +48,6 @@ def transform(order_data):
 ## define dag
 dag = DAG(
     dag_id="etldag",
-    schedule_interval=None,
     start_date=days_ago(2),
     default_args=default_args,
     schedule_interval="* 2 * * *",
