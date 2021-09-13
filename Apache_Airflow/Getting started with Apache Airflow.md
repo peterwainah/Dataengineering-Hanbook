@@ -1,4 +1,5 @@
 ## What is Apache Airflow
+![img.png](resources/airflow.png)
 Apache Airflow is a workflow engine that will easily schedule and run your complex data pipelines. It will make sure that each task of your data pipeline will get executed in the correct order and each task gets the required resources.
 
 It will provide you an amazing user interface to monitor and fix any issues that may arise
@@ -31,3 +32,6 @@ Now, start the airflow schedular using the following command in a different term
 ```bash
 airflow scheduler
 ```
+## DAGS
+DAG(Directed Acyclic Graph) is the core concept of Airflow ,involves collection of Tasks together with dependencies and relationships to say how they should run
+![img.png](resources/DAG.png)
