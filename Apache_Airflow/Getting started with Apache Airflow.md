@@ -35,4 +35,5 @@ airflow scheduler
 ```
 ## DAGS
 DAG(Directed Acyclic Graph) is the core concept of Airflow ,involves collection of Tasks together with dependencies and relationships to say how they should run
+
 ![img.png](resources/DAG.png)
