@@ -49,3 +49,9 @@ actually run for a particular task.
 
 ## Different connections can be added under Airflow connections,below is an example for adding postgres connections
 ![img.png](img.png)
+Before adding postgres connection,airflow postgres package should be installed using the below
+```bash
+pip install apache-airflow-providers-postgres
+
+
+```
