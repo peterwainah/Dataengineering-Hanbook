@@ -46,3 +46,6 @@ it also shows how often the DAG is run(maybe every 5 minutes starting tomorow,or
 
 A DAG usually has a schedule,a start time and a unique ID.The tasks inside DAG's are made of operators.Operators are define what
 actually run for a particular task.
+
+## Different connections can be added under Airflow connections,below is an example for adding postgres connections
+![img.png](img.png)

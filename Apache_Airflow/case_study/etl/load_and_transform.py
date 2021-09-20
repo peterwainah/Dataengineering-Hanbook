@@ -50,3 +50,5 @@ task2 = PythonOperator(
     python_callable=load_data,
     dag=dag
 )
+# set task1 "upstream of task2 i.e task1 must be completed before task2 can be started
+task1 >> task2
