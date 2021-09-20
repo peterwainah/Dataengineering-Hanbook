@@ -21,7 +21,7 @@ def fetch_weather_info():
         # Get json data
         json_data = result.json()
         file_name = str(datetime.now().date())+ '.json'
-        tot_name =os.path.join(os.path.dirname("/home/peterwainaina/Dataengineering-Handbook/outputs/"), file_name)
+        tot_name =os.path.join(os.path.dirname(os.environ.get('BASE_DIRECTORY')), file_name)
         with open(tot_name,'w') as outputfile:
             json.dump(json_data,outputfile)
 
