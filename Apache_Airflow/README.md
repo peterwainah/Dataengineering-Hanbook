@@ -32,7 +32,7 @@ airflow webserver -p 8080
 ```
 Now, start the airflow schedular using the following command in a different terminal. It will run all the time and monitor all your workflows and triggers them as you have assigned.
 ```bash
-airflow scheduler
+airflow scheduler -D
 ```
 ## DAGS
 DAG(Directed Acyclic Graph) is the core concept of Airflow ,involves collection of Tasks together with dependencies and relationships to say how they should run
