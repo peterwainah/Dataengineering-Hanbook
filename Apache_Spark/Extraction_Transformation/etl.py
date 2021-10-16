@@ -15,22 +15,26 @@ spark=SparkSession.builder.master("local")\
 
 database_config=json.loads(os.environ.get('EDMS_V3'))
 
+def etl_spark():
+    """using subquery to read frrom postgres"""
+    df = spark.read.jdbc(url = f"jdbc:postgresql://{database_config['host']}:{database_config['port']}/{database_config['database']}",
 
-"""using subquery to read frrom postgres"""
-df = spark.read.jdbc(url = f"jdbc:postgresql://{database_config['host']}:{database_config['port']}/{database_config['database']}",
-
-                     table = "(SELECT document_type, file_number, folio_number, metadata, document FROM nairobi_central.registration_main_test where file_number='charge/200') AS my_table",
-                     properties={"user": f"{database_config['user']}", "password": f"{database_config['password']}", "driver": 'org.postgresql.Driver'})\
-    # .createTempView('tbl')
+                         table = "(SELECT document_type, file_number, folio_number, metadata, document FROM nairobi_central.registration_main_test where file_number='charge/200') AS my_table",
+                         properties={"user": f"{database_config['user']}", "password": f"{database_config['password']}", "driver": 'org.postgresql.Driver'})\
+        # .createTempView('tbl')
 
 
-"""using collect() function to loop through the dataframe"""
+    """using collect() function to loop through the dataframe"""
 
-##Storing in variable
-data_collect=df.collect()
+    ##Storing in variable
+    data_collect=df.collect()
 
-# looping through each of the dataframe
-for values in data_collect:
-    registration_dict={"document_type":values['document_type'],
-                       "metadata":values['metadata']}
-    print(registration_dict)
+    # looping through each of the dataframe
+    for values in data_collect:
+        registration_dict={"document_type":values['document_type'],
+                           "metadata":values['metadata']}
+        print(registration_dict)
+
+
+if __name__ == '__main__':
+    etl_spark()
