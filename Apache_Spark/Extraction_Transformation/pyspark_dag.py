@@ -1,7 +1,7 @@
 
 from datetime import timedelta
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
 from airflow.utils.dates import days_ago
 
 default_args={
@@ -28,7 +28,7 @@ spark_config={
     'application':'/opt/'
 
 }
-pyspark_job=PythonOperator(task_id="pyspark_task",
+pyspark_job=SparkSubmitOperator(task_id="pyspark_task",
                            **spark_config
                            )
 pyspark_job
