@@ -117,4 +117,5 @@ curl -X POST -H "Content-Type:application/json" -H "Accept: application/json" -d
    "execution_date":"2021-10-18T16:18:01+00:00",
    "message":"Created <DagRun pyspark_etl @ 2021-10-18 16:18:01+00:00: manual__2021-10-18T16:18:01+00:00, externally triggered: True>",
    "run_id":"manual__2021-10-18T16:18:01+00:00"
+   }
 ```
