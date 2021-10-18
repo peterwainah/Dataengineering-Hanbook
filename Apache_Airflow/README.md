@@ -100,7 +100,7 @@ curl -X GET -H "Content-Type:application/json" -H "Accept: application/json" -d 
    }
 ```
 
-2.Trigger DAG Run
+##  2.Trigger DAG Run
 
 ## syntax
 ```bash
