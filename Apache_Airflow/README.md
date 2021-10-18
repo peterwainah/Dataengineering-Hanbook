@@ -63,7 +63,8 @@ pip install apache-airflow-providers-apache-spark
 ```
 ## Interacting with Airflow API 
 ### The following parameters should be adjusted in the configuration file to enable the experimental Airflow REST API
-endpoint_url = http://192.168.214.210:8081
+```bash
+endpoint_url = http://192.168.214.xxx:8081
 
 enable_experimental_api = True
 
@@ -73,5 +74,22 @@ auth_backend = airflow.api.auth.backend.default
 
 #### enabling with Basic auth
 auth_backend = airflow.api.auth.backend.basic_auth
+```
 
-## View tASK Status
+## View task Status
+### Syntax
+```bash
+curl -X GET -H "Content-Type:application/json" -H "Accept: application/json" -d '{}' "http://192.168.214.xxxx:8081/api/experimental/dags/pyspark_etl/dag_runs"
+```
+### Response
+```bash
+{
+      "dag_id":"pyspark_etl",
+      "dag_run_url":"/graph?dag_id=pyspark_etl&execution_date=2021-10-18+00%3A02%3A00%2B00%3A00",
+      "execution_date":"2021-10-18T00:02:00+00:00",
+      "id":3744,
+      "run_id":"scheduled__2021-10-18T00:02:00+00:00",
+      "start_date":"2021-10-18T11:37:44.555756+00:00",
+      "state":"success"
+   }
+```
