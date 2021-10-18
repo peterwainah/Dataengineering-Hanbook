@@ -6,11 +6,11 @@ from Apache_Spark.setting.project_config import *
 
 
 ## spark session
-driver_path = "/home/peterwainaina/ETL_Project/resources/drivers/postgresql-42.2.23.jar"
+
 # SparkSession.builder.master(f"{os.environ.get('SPARK_MASTER')}")
 spark=SparkSession.builder.master("local")\
     .appName("Geopro")\
-    .config("spark.jars", driver_path)\
+    .config("spark.jars", os.environ.get('driver_path'))\
     .getOrCreate()
 
 database_config=json.loads(os.environ.get('EDMS_V3'))
