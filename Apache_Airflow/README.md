@@ -76,7 +76,7 @@ auth_backend = airflow.api.auth.backend.default
 auth_backend = airflow.api.auth.backend.basic_auth
 ```
 
-## View task Status
+## 1. View task Status
 ### Syntax
 ```bash
 curl -X GET -H "Content-Type:application/json" -H "Accept: application/json" -d '{}' "http://192.168.214.xxxx:8081/api/experimental/dags/pyspark_etl/dag_runs"
