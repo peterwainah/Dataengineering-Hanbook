@@ -55,3 +55,23 @@ pip install apache-airflow-providers-postgres
 
 
 ```
+Apache spark package 
+```bash
+pip install apache-airflow-providers-apache-spark
+
+
+```
+## Interacting with Airflow API 
+### The following parameters should be adjusted in the configuration file to enable the experimental Airflow REST API
+endpoint_url = http://192.168.214.210:8081
+
+enable_experimental_api = True
+
+#### enabling without auth
+auth_backend = airflow.api.auth.backend.default 
+
+
+#### enabling with Basic auth
+auth_backend = airflow.api.auth.backend.basic_auth
+
+## View tASK Status
