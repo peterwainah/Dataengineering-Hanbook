@@ -77,7 +77,13 @@ auth_backend = airflow.api.auth.backend.basic_auth
 ```
 
 ## 1. View task Status
+
 ### Syntax
+```bash
+curl -X GET -H "Content-Type:application/json" -H "Accept: application/json" -d '{}' "http://192.168.214.xxxx:8081/api/experimental/dags/<DAG-ID>/dag_runs"
+
+```
+### Sample Query
 ```bash
 curl -X GET -H "Content-Type:application/json" -H "Accept: application/json" -d '{}' "http://192.168.214.xxxx:8081/api/experimental/dags/pyspark_etl/dag_runs"
 ```
@@ -92,4 +98,23 @@ curl -X GET -H "Content-Type:application/json" -H "Accept: application/json" -d 
       "start_date":"2021-10-18T11:37:44.555756+00:00",
       "state":"success"
    }
+```
+
+2.Trigger DAG Run
+
+## syntax
+```bash
+curl -X POST -H "Content-Type:application/json" -H "Accept: application/json" -d '{}' "http://192.168.214.xxxx:8081/api/experimental/dags/<DAG_ID>/dag_runs"
+```
+## Sample Query
+```bash
+ curl -X POST -H "Content-Type:application/json" -H "Accept: application/json" -d '{}' "http://192.168.214.xxxx:8081/api/experimental/dags/pyspark_etl/dag_runs"
+
+```
+## Response
+```bash
+{
+   "execution_date":"2021-10-18T16:18:01+00:00",
+   "message":"Created <DagRun pyspark_etl @ 2021-10-18 16:18:01+00:00: manual__2021-10-18T16:18:01+00:00, externally triggered: True>",
+   "run_id":"manual__2021-10-18T16:18:01+00:00"
 ```
