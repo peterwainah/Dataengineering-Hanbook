@@ -25,7 +25,7 @@ dag=DAG(
 
 spark_config={
     'conn_id':'spark_local',
-    'application':'/opt/'
+    'application':'/opt/Dataengineering-Handbook/Apache_Spark/main.py'
 
 }
 pyspark_job=SparkSubmitOperator(task_id="pyspark_task",
