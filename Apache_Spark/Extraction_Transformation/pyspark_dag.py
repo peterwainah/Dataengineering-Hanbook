@@ -29,6 +29,6 @@ spark_config={
 
 }
 pyspark_job=SparkSubmitOperator(task_id="pyspark_task",
-                           **spark_config
-                           )
+                           **spark_config,
+                            dag=dag)
 pyspark_job
