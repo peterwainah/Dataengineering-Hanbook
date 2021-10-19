@@ -16,7 +16,7 @@ default_args={
 }
 
 dag=DAG(
-    dag_id='transactable_delta',
+    dag_id='pyspark_task',
     default_args=default_args,
     start_date=days_ago(0),
     schedule_interval="2 * * * *",
