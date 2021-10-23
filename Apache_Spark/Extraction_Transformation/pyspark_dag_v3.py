@@ -8,6 +8,7 @@ from Apache_Spark.setting.project_config import *
 
 
 
+
 spark=SparkSession.builder.master("local")\
     .appName("Geopro")\
     .config("spark.jars", os.environ.get('driver_path'))\
@@ -29,15 +30,17 @@ default_args={
 dag=DAG(
     dag_id="pyspark_with_params",
     schedule_interval=None,
+    start_date=days_ago(0)
 )
 
 
 """arguments to be triggered manualy"""
-dag.trigger_arguments={"parcel_number":"string"}
 
+dag.trigger_arguments={"parcel_number":"string"}
 def pass_parcel(**kwargs):
+
     """getting parameters specified during dag trigger"""
-    dag_run_conf=kwargs["dag_run"].conf
+    dag_run_conf=kwargs['dag_run'].conf
     kwargs["ti"].xcom_push(key="parcel_number",value=dag_run_conf["parcel_number"]) ##push it as airflow xcom
 
 
@@ -91,3 +94,5 @@ spark_task=PythonOperator(
     provide_context=True,
     dag=dag
 )
+
+parcel_parameter >> spark_task
