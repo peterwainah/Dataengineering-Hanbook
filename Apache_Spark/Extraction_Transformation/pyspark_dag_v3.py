@@ -47,7 +47,7 @@ def pass_parcel(**kwargs):
 
 
 def etl_spark(ti):
-    file_number = ti.xcom_pull(key='testing_increase')
+    file_number = ti.xcom_pull(key='testing_increase',task_ids='pushing_task')
 
 
     """using subquery to read frrom postgres"""
