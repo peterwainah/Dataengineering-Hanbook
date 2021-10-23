@@ -44,8 +44,9 @@ def etl_spark():
 
     ##Storing in variable
     file_number='charge/200'
-    data_collect=df.filter(df.file_number == f"'{file_number}'").collect()
-    print(data_collect)
+    # data_collect=df.filter(df.file_number == f"'{file_number}'").collect()
+    data_collect=df.filter(f"file_number == {file_number}").collect()
+    # print(data_collect)
 
 
     # looping through each of the dataframe
