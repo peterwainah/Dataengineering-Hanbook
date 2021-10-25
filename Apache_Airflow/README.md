@@ -120,7 +120,14 @@ curl -X POST -H "Content-Type:application/json" -H "Accept: application/json" -d
    }
 ```
 # Passing Parameters in Airflow API
--Use xcom
+### XComs
+XComs (short for "cross-communications") are a mechanism that let Tasks talk to each other, as by default Tasks are entirely isolated and may be running on entirely different machines.
+
+An XCom is identified by a key (essentially its name), as well as the task_id and dag_id it came from. They can have any (serializable) value, but they are only designed for small amounts of data; do not use them to pass around large values, like dataframes.
+
+XComs are explicitly "pushed" and "pulled" to/from their storage using the xcom_push and xcom_pull methods on Task Instances. Many operators will auto-push their results into an XCom key called return_value if the do_xcom_push argument is set to True (as it is by default), and @task functions do this as well.
+
+
 
 ## sample Query
 ```bash
