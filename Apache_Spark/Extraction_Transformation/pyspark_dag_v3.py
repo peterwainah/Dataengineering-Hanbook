@@ -46,14 +46,8 @@ def pass_parcel(**kwargs):
     kwargs["ti"].xcom_push(key="parcel_number",value=dag_run_conf["parcel_number"]) ##push it as airflow xcom
 
 
-
-
-
-
-
 def etl_spark(**kwargs):
-    # pass_parcel
-    # parcel_no=kwargs['parcel_number']
+
 
     ti=kwargs['ti']
     parcel_no = ti.xcom_pull(key='parcel_number',task_ids='pass_parcel')
@@ -73,10 +67,8 @@ def etl_spark(**kwargs):
 
     ##Storing in variable
 
-    # data_collect=df.filter(df.file_number == f"'{file_number}'").collect()
     data_collect=df.filter(f"file_number == '{parcel_no}'").collect()
-    # data_collect = df.filter(df.file_number == 'charge/200').collect()
-    # print(data_collect)
+
 
 
     # looping through each of the dataframe
