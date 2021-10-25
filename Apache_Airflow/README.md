@@ -119,3 +119,20 @@ curl -X POST -H "Content-Type:application/json" -H "Accept: application/json" -d
    "run_id":"manual__2021-10-18T16:18:01+00:00"
    }
 ```
+# Passing Parameters in Airflow API
+-Use xcom
+
+## sample Query
+```bash
+ curl -X POST -H "Content-Type:application/json" -H "Accept: application/json"  "http://192.168.214.210:8081/api/experimental/dags/pyspark_with_params/dag_runs" -d '{"conf": {"parcel_number": "charge/200"}}'
+
+```
+
+## Response
+```bash
+{
+  "execution_date": "2021-10-25T16:43:55+00:00",
+  "message": "Created <DagRun pyspark_with_params @ 2021-10-25 16:43:55+00:00: manual__2021-10-25T16:43:55+00:00, externally triggered: True>",
+  "run_id": "manual__2021-10-25T16:43:55+00:00"
+}
+```

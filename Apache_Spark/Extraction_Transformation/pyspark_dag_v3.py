@@ -1,4 +1,6 @@
 from datetime import timedelta
+
+
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
@@ -49,11 +51,16 @@ def pass_parcel(**kwargs):
 
 
 
-def etl_spark(ti):
-    file_number = ti.xcom_pull(key='testing_increase',task_ids='pushing_task')
+def etl_spark(**kwargs):
+    # pass_parcel
+    # parcel_no=kwargs['parcel_number']
+
+    ti=kwargs['ti']
+    parcel_no = ti.xcom_pull(key='parcel_number',task_ids='pass_parcel')
+    # # print(parcel_no)
 
 
-    """using subquery to read frrom postgres"""
+    """using subquery to read from postgres"""
     df = spark.read.jdbc(url = f"jdbc:postgresql://{database_config['host']}:{database_config['port']}/{database_config['database']}",
 
                          table = "(SELECT document_type, file_number, folio_number, metadata, document FROM nairobi_central.registration_main_test ) AS my_table",
@@ -65,9 +72,10 @@ def etl_spark(ti):
     """using collect() function to loop through the dataframe"""
 
     ##Storing in variable
-    # file_number='charge/200'
+
     # data_collect=df.filter(df.file_number == f"'{file_number}'").collect()
-    data_collect=df.filter(f"file_number == {file_number}").collect()
+    data_collect=df.filter(f"file_number == '{parcel_no}'").collect()
+    # data_collect = df.filter(df.file_number == 'charge/200').collect()
     # print(data_collect)
 
 
@@ -90,7 +98,7 @@ parcel_parameter=PythonOperator(
 
 spark_task=PythonOperator(
     task_id="etl",
-    python_callable=pass_parcel(),
+    python_callable=etl_spark,
     provide_context=True,
     dag=dag
 )
