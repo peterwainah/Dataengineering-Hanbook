@@ -69,6 +69,11 @@ whether to load the DAG examples that ship with Airflow. It's good to get starte
 ```bash
 load_examples = False
 ````
+can be utc (default), system, or any IANA timezone string (e.g. Europe/Amsterdam)
+
+```bash
+default_timezone = Africa/Nairobi
+```
 ## Interacting with Airflow API 
 ### The following parameters should be adjusted in the configuration file to enable the experimental Airflow REST API
 ```bash
