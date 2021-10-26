@@ -61,6 +61,14 @@ pip install apache-airflow-providers-apache-spark
 
 
 ```
+how often the scheduler should run (in seconds).
+```bash
+scheduler_heartbeat_sec = 90
+```
+whether to load the DAG examples that ship with Airflow. It's good to get started, but you probably want to set this to ``False`` in a production environment
+```bash
+load_examples = False
+````
 ## Interacting with Airflow API 
 ### The following parameters should be adjusted in the configuration file to enable the experimental Airflow REST API
 ```bash
